@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' blob: data:;
+    font-src 'self' blob: data:;
+    media-src 'self' blob: data:;
+    frame-src 'self' blob:;
+    connect-src 'self' blob: data: ws://localhost:*;
+    object-src 'none';
+    base-uri 'none';
+    form-action 'none';
+  ">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
+  <title>Reader</title>
+  <style>
+    html, body { margin: 0; height: 100%; font-family: system-ui, sans-serif; }
+    body { display: flex; flex-direction: column; }
+    #toolbar { display: flex; gap: 8px; padding: 8px; padding-top: max(8px, env(safe-area-inset-top)); border-bottom: 1px solid #ddd; }
+    #toolbar button, .btn { padding: 8px 14px; border: 1px solid #ccc; border-radius: 8px; background: #fafafa; cursor: pointer; }
+    #viewer { flex: 1; min-height: 0; }
+  </style>
+</head>
+<body>
+  <div id="toolbar">
+    <label class="btn">Open EPUB<input type="file" id="file" accept=".epub" hidden /></label>
+    <button id="prev">‹ Prev</button>
+    <button id="next">Next ›</button>
+  </div>
+  <div id="viewer"></div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
